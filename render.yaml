@@ -1,7 +1,9 @@
 services:
   - type: web
-    name: your-service-name
+    name: lipbuddy
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    buildCommand: |
+      apt-get update && apt-get install -y ffmpeg libsm6 libxext6 libglib2.0-0
+      pip install -r requirements.txt
+    startCommand: streamlit run streamlitapp.py --server.port $PORT --server.address 0.0.0.0
